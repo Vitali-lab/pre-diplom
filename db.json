@@ -1,0 +1,354 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "category_id": "2",
+      "images": [
+        "https://a.lmcdn.ru/img600x866/R/T/RTLADZ108401_25762133_1_v1.jpg"
+      ],
+      "name": "Куртка осенняя",
+      "description": "Короткая куртка с капюшоном в цвете camel",
+      "price": 1000,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4.5,
+      "likes": 0,
+      "reviews": [],
+      "tags": [
+        "куртка",
+        "осенняя",
+        "camel"
+      ],
+      "season_id": "1"
+    },
+    {
+      "id": "2",
+      "category_id": "4",
+      "images": [
+        "https://a.lmcdn.ru/img600x866/R/T/RTLADV810401_25577402_1_v1.jpg"
+      ],
+      "name": "Кроссовки белые",
+      "description": "Лёгкие кроссовки с амортизацией",
+      "price": 250,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4.2,
+      "likes": 0,
+      "reviews": [],
+      "tags": [
+        "кроссовки",
+        "спорт",
+        "обувь"
+      ],
+      "season_id": "1"
+    },
+    {
+      "id": "4",
+      "category_id": "0",
+      "images": [
+        "https://a.lmcdn.ru/img600x866/M/P/MP002XW0SY6Q_27638218_1_v2_2x.jpg"
+      ],
+      "name": "Футболка базовая",
+      "description": "Белая хлопковая футболка унисекс",
+      "price": 50,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4,
+      "likes": 0,
+      "reviews": [],
+      "tags": [
+        "футболка",
+        "базовая",
+        "хлопок"
+      ],
+      "season_id": "1"
+    },
+    {
+      "id": "5",
+      "category_id": "1",
+      "images": [
+        "https://a.lmcdn.ru/img600x866/R/T/RTLAED884301_28145238_1_v1_2x.jpg"
+      ],
+      "name": "Джинсы синие",
+      "description": "Классические прямые джинсы",
+      "price": 120,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4.3,
+      "likes": 0,
+      "tags": [
+        "джинсы",
+        "штаны",
+        "деним"
+      ],
+      "season_id": "3"
+    },
+    {
+      "id": "7",
+      "category_id": "3",
+      "images": [
+        "https://a.lmcdn.ru/img600x866/R/T/RTLACP722201_19823952_1_v1_2x.jpg"
+      ],
+      "name": "Платье вечернее",
+      "description": "Элегантное чёрное платье до колена",
+      "price": 300,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4.8,
+      "likes": 0,
+      "tags": [
+        "платье",
+        "вечернее",
+        "классика"
+      ],
+      "season_id": "1"
+    },
+    {
+      "id": "9",
+      "category_id": "8",
+      "images": [
+        "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+      ],
+      "name": "Солнцезащитные очки",
+      "description": "Очки с поляризацией и UV‑защитой",
+      "price": 80,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4.1,
+      "likes": 0,
+      "tags": [
+        "очки",
+        "лето",
+        "аксессуары"
+      ],
+      "season_id": "1"
+    },
+    {
+      "id": "10",
+      "category_id": "7",
+      "images": [
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
+      ],
+      "name": "Сумка кожаная",
+      "description": "Классическая сумка из натуральной кожи",
+      "price": 600,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4.9,
+      "likes": 0,
+      "tags": [
+        "сумка",
+        "кожа",
+        "аксессуары"
+      ],
+      "season_id": "2"
+    },
+    {
+      "id": "11",
+      "category_id": "6",
+      "images": [
+        "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?auto=format&fit=crop&w=800&q=80"
+      ],
+      "name": "Спортивный костюм",
+      "description": "Комплект из худи и брюк для тренировок",
+      "price": 220,
+      "sizes": {
+        "S": 10,
+        "M": 8,
+        "L": 6,
+        "XL": 4
+      },
+      "rating": 4.5,
+      "likes": 0,
+      "tags": [
+        "спорт",
+        "костюм",
+        "тренировки"
+      ],
+      "season_id": "1"
+    },
+    {
+      "id": "31da",
+      "category_id": "2",
+      "images": [
+        "https://a.lmcdn.ru/img600x866/M/P/MP002XW0IMYA_25487495_1_v1_2x.jpg"
+      ],
+      "name": "Свитер",
+      "description": "Свитер тёплый",
+      "price": "1200",
+      "sizes": {
+        "XS": "1",
+        "S": "1",
+        "M": "1",
+        "L": "1",
+        "XL": "1"
+      },
+      "rating": 0,
+      "likes": 0,
+      "season_id": "2"
+    }
+  ],
+  "cart": [],
+  "categories": [
+    {
+      "id": "0",
+      "name": "Футболки"
+    },
+    {
+      "id": "1",
+      "name": "Штаны"
+    },
+    {
+      "id": "2",
+      "name": "Куртки"
+    },
+    {
+      "id": "3",
+      "name": "Платья"
+    },
+    {
+      "id": "4",
+      "name": "Обувь"
+    },
+    {
+      "id": "6",
+      "name": "Костюмы"
+    },
+    {
+      "id": "7",
+      "name": "Сумки"
+    },
+    {
+      "id": "8",
+      "name": "Очки"
+    },
+    {
+      "id": "a029",
+      "name": "Джинсы"
+    },
+    {
+      "id": "8edb",
+      "name": "Брюки"
+    },
+    {
+      "id": "8d26",
+      "name": "Майки"
+    },
+    {
+      "id": "abb1",
+      "name": "Плащи"
+    }
+  ],
+  "seasons": [
+    {
+      "id": "0",
+      "name": "Зима"
+    },
+    {
+      "id": "1",
+      "name": "Лето"
+    },
+    {
+      "id": "2",
+      "name": "Весна"
+    },
+    {
+      "id": "3",
+      "name": "Осень"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Алексей Иванов",
+      "email": "alexey.ivanov@example.com",
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+      "role": "customer",
+      "likes": [
+        1,
+        3
+      ],
+      "cart": [
+        2,
+        5
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Мария Петрова",
+      "email": "maria.petrova@example.com",
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
+      "role": "customer",
+      "likes": [
+        2,
+        4
+      ],
+      "cart": [
+        1
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Иван Сидоров",
+      "email": "ivan.sidorov@example.com",
+      "avatar": "https://randomuser.me/api/portraits/men/65.jpg",
+      "role": "customer",
+      "likes": [
+        5
+      ],
+      "cart": []
+    },
+    {
+      "id": "4",
+      "name": "Екатерина Смирнова",
+      "email": "ekaterina.smirnova@example.com",
+      "avatar": "https://randomuser.me/api/portraits/women/12.jpg",
+      "role": "customer",
+      "likes": [
+        1,
+        2,
+        3
+      ],
+      "cart": [
+        4
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Дмитрий Кузнецов",
+      "email": "dmitry.kuznetsov@example.com",
+      "avatar": "https://randomuser.me/api/portraits/men/77.jpg",
+      "role": "admin",
+      "likes": [],
+      "cart": []
+    }
+  ]
+}
