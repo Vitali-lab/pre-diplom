@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const InputContainer = ({ className,text, ...props   }) => {
+const InputContainer = ({ className,text, ...props}) => {
     const [isFocus, setIsFocus] = useState(false);
 
     const handleFocus = () => {
@@ -19,11 +19,7 @@ const InputContainer = ({ className,text, ...props   }) => {
     return <div className={className}>
         <p className={`${!isFocus ? 'title' : 'title-up'}`}>{text}</p>
         <input 
-        props={props}
-        max={props.max}
-        type={props.type}
-        value={props.value} 
-        onChange={props.onChange} 
+        {...props} 
         onFocus={handleFocus} onBlur={handleBlur}/>
     </div>;
 };
@@ -32,12 +28,12 @@ export const Input = styled(InputContainer)`
 & input {
 width:${({width = '300px'}) => width};
 height: 30px;
-background-color: #ffffff;
+background-color: transparent;
 border: none;
 border-bottom: 1px solid #070707ff;
 z-index: 10;
 color: #181818ff;
-font-size: 15px;
+font-size:15px;
 padding: 5px;
 
 &:focus{
@@ -48,7 +44,7 @@ padding: 5px;
 & .title {
     transform: translateY(45px);
     color: #181818ff;
-    font-size: 15px;
+    font-size:${({fontSize = '15px'}) => fontSize};
     z-index: 0;
     transition: all ease 0.3s;
     pointer-events: none;
@@ -56,7 +52,7 @@ padding: 5px;
 & .title-up {
     transform: translateY(20px);
     color: #181818ff;
-    font-size: 15px;
+    font-size: ${({fontSize = '15px'}) => fontSize};
     z-index: 0;
     transition: all ease 0.3s;
     pointer-events: none;

@@ -1,5 +1,6 @@
 
 import styled from 'styled-components'
+import { Notification } from '../../components/notification/Notification'
 import { RecentlyViewed } from '../../components/recently-viewed/RecentlyViewed'
 
 
@@ -7,6 +8,7 @@ import { RecentlyViewed } from '../../components/recently-viewed/RecentlyViewed'
 const MainContainer = ({className}) => {
   return (
     <div className={className}>
+      
         <h1>Главная</h1>
         <RecentlyViewed/>
     </div>

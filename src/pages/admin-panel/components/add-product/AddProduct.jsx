@@ -5,6 +5,7 @@ import { Button } from "../../../../components/button/Button"
 import { postProduct } from "../../../../bff/api/post-product"
 import { useState } from "react"
 import styled from "styled-components"
+import { img } from "framer-motion/client"
 
 const AddProductContainer = ({className}) => {
 
@@ -27,6 +28,7 @@ const AddProductContainer = ({className}) => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [image, setImage] = useState([]);
+    const [imageUrl, setImageUtl] = useState('');
 
     const dispatch = useDispatch();
     
@@ -34,6 +36,8 @@ const AddProductContainer = ({className}) => {
         dispatch(postProduct(name, description, price, image, category, season, sizes));
         navigate('/admin-panel')
     } 
+    console.log(imageUrl);
+    
 
     return (
         <div className={className}>
@@ -43,8 +47,13 @@ const AddProductContainer = ({className}) => {
               <Input text={"Название"} width={"300px"} onChange={(e) => setName(e.target.value)} /> 
               <Input text={"Описание"} width={"300px"} onChange={(e) => setDescription(e.target.value)} />
               <Input text={"Цена"} width={"300px"} onChange={(e) => setPrice(e.target.value)} />
-              <Input text={"Фото (url временно)"} width={"300px"} onChange={(e) => setImage([...image, e.target.value])} />
+              <Input text={"Фото (url временно)"} value={imageUrl} width={"300px"} onChange={(e) => setImageUtl(e.target.value)}  />
+              <Button width={"300px"} onClick={(e) => {
+                setImage([...image, imageUrl])
+                setImageUtl('')
+              }}>Добавить изоображение</Button>
             </div>
+            
             <div className="info">
                 <h3>Выберите категорию и сезон</h3>
                 Категории:
@@ -56,6 +65,7 @@ const AddProductContainer = ({className}) => {
                 {allSeasons.map(item => (<option value={item.id}>{item.name}</option>))}
               </select>
             </div>
+            
             <div className="info">
                 <h3>Укажите размеры</h3>
                 <div className="inputs">
@@ -67,6 +77,13 @@ const AddProductContainer = ({className}) => {
 
                 </div>
             </div>
+            </div>
+            <div className="images">
+                {image.map((img) => {
+                    return <img src={img} alt="" />
+                } 
+                    
+                )}
             </div>
             <div className="button-add">
                 <Button width={"200px"} onClick={onSubmit}>Добавить товар</Button>
@@ -122,4 +139,15 @@ gap: 20px;
     border: 1px solid #ccccccff;
     border-radius: 10px;
  }  
+    & .images{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin: 20px 0 0 0;
+        width: 1300px;
+    }
+   
 `

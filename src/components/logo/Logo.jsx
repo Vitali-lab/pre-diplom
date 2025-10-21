@@ -1,14 +1,17 @@
 import logo from '../../images/logo.png'
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
 
- const LogoContainer = ({ className }) => 
+ const LogoContainer = ({ className }) => {
+    const navigate = useNavigate();
 
-    <div className={className}>
+   return(
+   <div className={className} onClick={()=> navigate('/')}>
         <img src={logo} alt="" />
-    </div>
+    </div>) 
 
-
+}
 
 
 export const Logo = styled(LogoContainer)`

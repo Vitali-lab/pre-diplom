@@ -7,9 +7,9 @@ import styled from "styled-components";
 const CatalogContainer = ({ className }) => {
 
     const products = useSelector(state => state.products.products);
-
-      const [productsFiltered, setProductsFiltered] = useState([]);
-      
+    
+    const [productsFiltered, setProductsFiltered] = useState([]);
+    
   
 
 useEffect(() => {

@@ -1,9 +1,39 @@
 import { Link } from "react-router-dom";
 import { Icon } from "../../../icon/Icon";
 import { Logo } from "../../../logo/Logo";
-import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import styled,{keyframes} from "styled-components";
+
+const bagAnimation = keyframes`
+0%{
+    
+    transform: rotate(0deg);
+}
+25%{
+    transform: rotate(10deg);
+}
+50%{
+    transform: rotate(0deg);
+}
+75%{
+    transform: rotate(-10deg);
+}
+100%{
+    transform: rotate(0deg);
+}
+`
+
+
 
 const ControlPanelContainer = ({className , setIsAuthOpen}) => {
+
+
+    const cart = useSelector(state => state.app.cart);
+    const currentUser = useSelector(state => state.user.currentUser);
+    const navigate = useNavigate();
+  
+  
 
     return(
         <div className={className}>
@@ -15,10 +45,19 @@ const ControlPanelContainer = ({className , setIsAuthOpen}) => {
             <Logo />
             </div> 
         <div className="icons">
-            <Icon id="heart-o" color="#0a0a0aff"/>
-            <Icon id="shopping-bag" color="#0c0c0cff"/>
-            <Icon id="user-o" color="#0c0c0cff" onClick={() => {setIsAuthOpen(true)}}/>
-             <Link to="/admin-panel"><Icon id="lock" color="#0c0c0cff"/></Link>          
+            <Icon id="heart-o" color="#0a0a0aff" size="25" onClick={()=>{navigate('/favorites')}}/>
+            <div className="shopping-bag">
+                <Icon id="shopping-bag" size="25" color="#0c0c0cff" onClick={()=>{navigate('/cart')}}/>
+                {cart.length > 0 && <span>{cart.length}</span>}
+            </div>
+            {!currentUser?(<Icon  id="user-o" color="#0c0c0cff" onClick={() => {setIsAuthOpen(true)}}/>)
+            :(<div className="user-icon">{currentUser.name.slice(0,1)}</div>)}
+             {currentUser && 
+             <div>
+                {currentUser.role === 'admin' && <Link to="/admin-panel"><Icon id="lock" color="#0c0c0cff"  size="25"/></Link>}
+            </div>  
+
+             }       
             </div>
         </div>
     )
@@ -34,7 +73,23 @@ align-items: end;
 width: 100%;
 height: 70px;
 margin: 0 auto;
-
+& .user-icon{
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background-color: #f5f5f5be;
+color: #8a8888ff;
+display: flex;
+cursor: pointer;
+border: 3px solid #494949ff;
+justify-content: center;
+align-items: center;
+font-size: 22px;
+font-weight: 700;
+}
+&  i {
+cursor: pointer;
+}
 
 & .search{
 width: 400px;
@@ -69,6 +124,27 @@ align-items: center;
    justify-content: center;
    align-items: center;
    
- }          
+ }  
+   
+  & .shopping-bag {
+  cursor: pointer;
+     position: relative;
+     animation: ${bagAnimation} 1s ease ;
+     & span{
+         position: absolute;
+         top: -9px;
+    right: -16px;
+    width: 22px;
+    height: 22px;
+         border-radius: 50%;
+         background-color: #ff0000ff;
+         color: #ffffffff;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 12px;
+         font-weight: bold;
+     }
+  }
 `
 

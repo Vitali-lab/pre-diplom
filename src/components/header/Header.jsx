@@ -1,7 +1,8 @@
 
 import styled from "styled-components";
 import { useState } from "react";
-import { Auth } from "../../pages/auth/Auth";
+import { Auth } from "../auth/Auth";
+import { Registration } from "../registration/Regictration";
 import { NavigateBar } from "./components/navigate-bar/NavigateBar";
 import { ControlPanel } from "./components/control-panel/ControlPanel";
 
@@ -9,11 +10,12 @@ import { ControlPanel } from "./components/control-panel/ControlPanel";
 const HeaderContainer = ({ className  }) => {
     
 const [isAuthOpen, setIsAuthOpen] = useState(false);
+const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
 
     return (
         <>
-        {isAuthOpen && <Auth setIsAuthOpen={setIsAuthOpen}/>}
-       
+        {isAuthOpen && <Auth setIsAuthOpen={setIsAuthOpen} setIsRegistrationOpen={setIsRegistrationOpen}/>}
+        {isRegistrationOpen && <Registration setIsRegistrationOpen={setIsRegistrationOpen}/>}
         <div className={className}>
         
          <ControlPanel setIsAuthOpen ={setIsAuthOpen}/>
@@ -35,7 +37,7 @@ align-items: center;
 width: 1400px;
 background-color: #ffffffff;
 width: 1700px;
-position: fixed;
+position: absolute;
 z-index: 1;
 top: 0;
 

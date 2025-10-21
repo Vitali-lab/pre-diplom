@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../../components/button/Button";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Icon } from "../../../../components/icon/Icon";
+import { useAddToFavorites } from "../../../../hooks/use-add-to-favorites";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 
@@ -22,16 +25,38 @@ const ProductIcons = styled.div`
     align-items: end;
     gap: 10px;
     margin: 10px 0 0 0;
+    & .bag i{
+        cursor: pointer;
+        transition: all ease 0.5s;
+        &:hover {
+            color: #8f3939ff;
+            trasition: all ease 0.5s;
+            scale: 1.3;
+        }
+    }
 `;
 
 
 const PostsListContainer = ({ className , products}) => {
  
 
-   
-
+  
  const navigate = useNavigate();
-    
+const { addToFavorites } = useAddToFavorites();
+const currentUser = useSelector(state => state.user.currentUser);
+
+
+
+const isUserLike = (post) => {
+  if (!currentUser) {
+   return false
+  }
+  if(currentUser.likes.find((item) => item.id === post.id)){
+    return true
+  }
+  
+};
+
 
 
 const onProductClick = (id) => {
@@ -40,6 +65,8 @@ const onProductClick = (id) => {
     const storage = [...JSON.parse(sessionStorage.getItem('products'))] 
     const product = products.find(item => item.id === id)
     
+    
+    
     if(storage.length === 0 || !storage.find(item => item.id === id)){
       storage.push(product)
     } 
@@ -47,6 +74,10 @@ const onProductClick = (id) => {
     sessionStorage.setItem('products', JSON.stringify(storage))
   };
   
+
+
+
+ 
  
   
 
@@ -64,7 +95,7 @@ const onProductClick = (id) => {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -30, scale: 0.9 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        whileTap={{ scale: 0.97 }}
+        
       >
          
         <div onClick={() => onProductClick(post.id)}>
@@ -77,8 +108,13 @@ const onProductClick = (id) => {
         </ProductPrice>
         </div>
         <ProductIcons>
-        <Icon id="heart-o" color="#0a0a0aff" size="18"/>
-        <Icon id="shopping-bag" color="#0c0c0cff" size="18"/>
+      <Icon className="heart" 
+      id={isUserLike(post) ? "heart" : "heart-o"} 
+      color={isUserLike(post) ? "#cf2b2bff" : "#0a0a0aff"} 
+      size="18" 
+      onClick={() => {
+        addToFavorites(post)}}/>
+        <Icon className="bag" id="shopping-cart" color="#0c0c0cff" size="18"/>
         </ProductIcons>
         
       </motion.div>
@@ -107,6 +143,9 @@ margin-left: 0px;
 margin-bottom: 100px;
 margin-top: 30px;
 
+ & i{
+ cursor: pointer;
+ }
 
 & .container{
     width: 1300px;
@@ -114,6 +153,7 @@ margin-top: 30px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
     
 }
     & .pagination{
@@ -135,8 +175,8 @@ margin-top: 30px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
     font-size: 14px;
     padding: 15px;
-    cursor: pointer;
     
+ 
     
     
     & img{

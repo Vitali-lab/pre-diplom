@@ -21,7 +21,4 @@ body,
   height: 100%;
   margin: 0 auto;
   padding: 0;
-  scrollbar-gutter: stable;
-  transform: scale(0.94);
-  transform-origin: top center;
 }

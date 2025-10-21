@@ -1,9 +1,50 @@
 
 
-import { useEffect,useState } from "react";
+import { useEffect, useLayoutEffect,useState } from "react";
 import { getProduct } from "../../bff/api/get-product";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import { Icon } from "../../components/icon/Icon";
+import { useDispatch, useSelector } from "react-redux";
+import { addInCart } from "../../actions/add-in-cart";
+import { notifySuccess , notifyError } from "../../func/notification";
+import { useAddToFavorites } from "../../hooks/use-add-to-favorites";
+import styled,{keyframes} from "styled-components";
+import { Button } from "../../components/button/Button";
+
+const openAnimation = keyframes`
+from{
+    
+    opacity: 0;
+    transform: translateY(-30px);
+}
+to{
+    opacity: 1;
+    transform: translateY(0px);
+}
+`
+
+const ButtonsDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    gap: 10px;
+    margin: 50px 0 0 0;
+    animation: ${openAnimation} 0.5s ease;
+`;
+
+const AboutCurrentSizeDiv = styled.div`
+font-size: 10px;
+margin: 0px;
+width: 100%;
+animation: ${openAnimation} 0.5s ease;
+ & p{
+ font-size: 15px;
+ margin: 20px 0 0 0px;
+ }
+
+
+`
 
 
 const ProductContainer = ({className}) => {
@@ -11,30 +52,135 @@ const ProductContainer = ({className}) => {
     const params = useParams();
 
     const [product, setProduct] = useState({});
+    const [activeButton, setActiveButton] = useState('');
+    const [increment, setIncrement] = useState(0);
+    const [userRating, setUserRating] = useState(0);
+    const [hover , setHover] = useState(null);
+    const {addToFavorites} = useAddToFavorites();
     
+    const nextImage = () => {
+        if(increment < product.images.length - 1) {
+            setIncrement(increment + 1);
+        }else {
+            setIncrement(0);
+        }
+    }  
+    
+    const prevImage = () => {
+        if(increment > 0) {
+            setIncrement(increment - 1);
+        }else {
+            setIncrement(product.images.length - 1);
+        }
+    }
+
 
     useEffect(()=>{
+        setTimeout(()=>{
+          setUserRating(0)  
+        },30000)
+    },[userRating])
+   
+
+    const dispatch = useDispatch();
+
+    useLayoutEffect(()=>{
     getProduct(params.id)
     .then((data)=>setProduct(data))
     },[])
+
+  const cart = useSelector(state => state.app.cart);
+    
+  cart.find(item => console.log(item))
+
+  
+
+    if(Object.keys(product).length === 0) {
+          
+        return <h1>Loading...</h1>;}
+    
+     const sizesKeys = Object.keys(product.sizes);   
+     
+    
+    const addToCard = () => {
+
+        if(!activeButton) {
+            notifyError("Выберите размер");
+            return;
+        }
+
+        if (activeButton && !cart.find(item => item.id === `${product.id}-${activeButton}` && item.size === activeButton) ) {
+           dispatch(addInCart(product, `${product.id}-${activeButton}`, activeButton,1));
+           notifySuccess(`${product.name} размера ${activeButton} добавлен в корзину`);
+        } else {
+            notifyError(`${product.name} размера ${activeButton} уже есть в корзине`);
+        }
+       
+       
+    }
+   
+    
+
 
     return (
        
          <div className={className}>
             <div className="images">
-                {Array.isArray(product.images)? (product.images.map((image, index) => {
-                    return (
-                        <div key={index} className="image">
-                            <img src={image} alt="" />
-                        </div>
-                    )
-                })): null}
+                {product.images.length > 1 && <Icon id={"chevron-left"} onClick={prevImage}/>}
+                 <div className="image">
+                    <img src={product.images[increment]} alt="" />
+                 </div>
+                {product.images.length > 1 &&  <Icon id={"chevron-right"} onClick={nextImage}/>}
             </div>
-             <h1>{product.name}</h1>
-             <p>{product.description}</p>
-             <p>{product.category}</p>
-             <p>{product.rating}</p>
-             <p>{product.price}</p>
+            
+             <div className="information">
+                <h1>{product.name}</h1>
+                <h5>{product.description}</h5>
+                <p>{product.price} руб.</p>
+             <div className="sizes">
+                
+                {sizesKeys.map((size, index) => {
+                    if (product.sizes[size] !== 0)
+
+                  return (
+                    <button className={activeButton === size ? 'active' : 'not-active'} onClick={()=>{setActiveButton(size)}} key={index}>
+                      {size}
+                    </button >
+                  )  
+                })}
+             </div>
+             {activeButton && 
+                <AboutCurrentSizeDiv className="about-current-size">
+                    <p>Выбран размер: {activeButton}</p>
+                    <p>В наличии: {product.sizes[activeButton]} шт.</p>
+                </AboutCurrentSizeDiv>}
+             <ButtonsDiv >
+                <Button disabled={!activeButton} width="400px" onClick={addToCard}>{activeButton ? `Добавить в корзину: ${product.name } размер: ${activeButton}` : 'Выберите размер'}</Button>
+                <Button width="400px" onClick={()=>{addToFavorites(product)}}>Добавить в избранное</Button>
+             </ButtonsDiv>
+
+             <div className="rating">
+                {Array(5).fill(0).map((item, index) => {
+                    return (
+                        <Icon id={"star"} key={index}
+                        size = {'35'} 
+                        color={index + 1 <= (hover || userRating) ? '#fdcc2cff' : 'grey'} 
+                        onMouseEnter={() => setHover(index + 1)}
+                        onMouseLeave={() => setHover(null)}
+                        onClick={() => setUserRating(index + 1)}/>
+                    )   
+                })}
+             </div>
+             {userRating === 0 ? <p>Оцените товар</p> : (
+                <div>
+                    <p>Ваша оценка: {userRating}</p>
+                    <Button>Отправить</Button>
+                </div>
+             )}
+             
+             <p>Общий рейтинг: {product.rating}</p>
+             
+             </div>
          </div>
         
     )
@@ -43,19 +189,113 @@ const ProductContainer = ({className}) => {
 export const Product = styled(ProductContainer)`
 width: 1600px;
 padding: 40px;
-border-radius: 10px;
--webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
--moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
-background-color: #ffffffff;
-& .images{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-    & img{
-        width: 400px;
-        height: 700px;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+gap: 117px;
+
+& .rating{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+    margin: 50px 0 0 0;
+    transition: all ease 0.5s;
+
+    & i{
+        cursor: pointer;
+        transition: all ease 0.5s;
+        &:hover{
+            transition: all ease 0.5s;
+            color: #fdcc2cff;
+        }
     }
 }
+
+
+
+
+& .sizes {
+display: flex;
+flex-direction: row;
+justify-content: start;
+align-items: center;
+gap: 10px;
+
+& .active {
+    width: 50px;
+     height: 50px;
+     border-radius: 0px;
+     border: 1px solid #000000ff;
+     background-color: black;
+     color: #fdfbfbff;
+     font-size: 15px;
+     cursor: pointer;
+     transition: all ease 0.5s;
+     
+    }
+
+ & .not-active{
+     width: 50px;
+     height: 50px;
+     border-radius: 0px;
+     border: 1px solid #000000ff;
+     background-color: transparent;
+     color: #0f0f0fff;
+     font-size: 15px;
+     cursor: pointer;
+     transition: all ease 0.5s;
+     &:hover{
+     transition: all ease 0.5s;
+         background-color: #000000ff;
+         color: #ffffffff;
+     }
+ }
+}
+& .information{
+width: 30%;
+display: flex;
+flex-direction: column;
+justify-content: start;
+align-items: start;
+ 
+ & h5{
+ font-size: 15px;
+ font-weight: 400;
+ margin: 0px 0 20px 0;
+ }
+}
+& .images {
+width:70%;
+height: 800px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 30px;
+margin: 0 0 20px 0;
+transition: all ease 0.5s;
+& i:hover{
+    cursor: pointer;
+    color: #7c7c7cff;
+    transition: all ease 0.5s;
+}
+    & i:active{
+    transform: scale(0.8);
+    color: #7c7c7cff;
+    
+  
+}
+& .image img {
+  width: 550px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 5px rgba(120, 120, 120, 0.24);
+  object-fit: contain;
+  
+  
+  
+  
+}
+    
 `
