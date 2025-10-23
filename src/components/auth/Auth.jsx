@@ -89,10 +89,9 @@ const {
     });
 
 const [error , setError] = useState('');
-const onSubmit = async({email , password}) => {
+const onSubmit = ({email , password}) => {
     try {
-    const user = await dispatch(getUser( email, password ))
-    console.log(user);
+    const user =  dispatch(getUser( email, password ))
     
     if(user){
     setIsAuthOpen(false);

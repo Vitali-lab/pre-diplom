@@ -20,7 +20,5 @@ transition: color 0.2s ease-in-out;
  & i{
    cursor: ${({cursor = 'pointer'}) => cursor};
  }
-  &:hover {
-    color:${({hoverColor = '#111111ff'}) => hoverColor};
-  }
+ 
 `

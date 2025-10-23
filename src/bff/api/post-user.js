@@ -10,7 +10,7 @@ export const postUser = async (
   try {
     const users = await getUsers();
     if (!users.find((user) => user.email === userEmail)) {
-      await fetch("http://localhost:4000/users", {
+      const res = await fetch("http://localhost:4000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,6 +25,10 @@ export const postUser = async (
           isAdmin: false,
         }),
       });
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      return res.json();
     } else {
       throw new Error("Пользователь с таким email уже существует");
     }

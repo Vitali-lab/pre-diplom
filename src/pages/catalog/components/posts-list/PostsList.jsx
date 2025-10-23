@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Button } from "../../../../components/button/Button";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Icon } from "../../../../components/icon/Icon";
-import { useAddToFavorites } from "../../../../hooks/use-add-to-favorites";
+import { useToggleFavorites } from "../../../../hooks/use-toggle-favorites";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 
@@ -28,11 +27,7 @@ const ProductIcons = styled.div`
     & .bag i{
         cursor: pointer;
         transition: all ease 0.5s;
-        &:hover {
-            color: #8f3939ff;
-            trasition: all ease 0.5s;
-            scale: 1.3;
-        }
+        
     }
 `;
 
@@ -42,20 +37,9 @@ const PostsListContainer = ({ className , products}) => {
 
   
  const navigate = useNavigate();
-const { addToFavorites } = useAddToFavorites();
-const currentUser = useSelector(state => state.user.currentUser);
 
+const {toggleFavorites,isUserLike} = useToggleFavorites()
 
-
-const isUserLike = (post) => {
-  if (!currentUser) {
-   return false
-  }
-  if(currentUser.likes.find((item) => item.id === post.id)){
-    return true
-  }
-  
-};
 
 
 
@@ -64,7 +48,6 @@ const onProductClick = (id) => {
     
     const storage = [...JSON.parse(sessionStorage.getItem('products'))] 
     const product = products.find(item => item.id === id)
-    
     
     
     if(storage.length === 0 || !storage.find(item => item.id === id)){
@@ -76,6 +59,8 @@ const onProductClick = (id) => {
   
 
 
+const [pagination , setPagination] = useState(12)
+    
 
  
  
@@ -87,7 +72,7 @@ const onProductClick = (id) => {
        
           {Array.isArray(products) && (
   <AnimatePresence>
-    {products.map((post) => (
+    {products.slice(0, pagination).map((post) => (
       <motion.div
         key={post.id}
         className="post"
@@ -112,8 +97,7 @@ const onProductClick = (id) => {
       id={isUserLike(post) ? "heart" : "heart-o"} 
       color={isUserLike(post) ? "#cf2b2bff" : "#0a0a0aff"} 
       size="18" 
-      onClick={() => {
-        addToFavorites(post)}}/>
+      onClick={() => toggleFavorites(post)}/>
         <Icon className="bag" id="shopping-cart" color="#0c0c0cff" size="18"/>
         </ProductIcons>
         
@@ -123,7 +107,9 @@ const onProductClick = (id) => {
 )}
      </div>
      <div className="pagination">
-     <Button>Показать ещё</Button>
+     {products.length > 12 && (
+       <Button width = "200px" onClick = {() => setPagination(pagination + 3)} >Показать ещё</Button>
+     )}
      </div>
      </div>
     )
@@ -146,6 +132,10 @@ margin-top: 30px;
  & i{
  cursor: pointer;
  }
+ & i:active{
+ transition: all ease 0.2s;
+     transform: scale(0.7);
+ }
 
 & .container{
     width: 1300px;
@@ -156,15 +146,16 @@ margin-top: 30px;
     
     
 }
-    & .pagination{
-        width: 1300px;
-        display: flex;
-        flex-direction: row;
-        justify-content:center;
-        align-items: center;
-        gap: 25px;
-        margin: 20px 0 0 0;
-    }
+
+& .pagination{
+    width: 1300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
 
 & .post{
     display: flex;

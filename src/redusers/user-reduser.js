@@ -20,6 +20,17 @@ export const userReduser = (state = initialAppState, action) => {
         },
       };
     }
+    case ACTION_TYPE.REMOVE_USER_LIKES: {
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          likes: state.currentUser.likes.filter(
+            (like) => like.id !== action.payload.id
+          ),
+        },
+      };
+    }
     default:
       return state;
   }

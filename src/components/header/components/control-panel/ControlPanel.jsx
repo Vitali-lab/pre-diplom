@@ -51,7 +51,7 @@ const ControlPanelContainer = ({className , setIsAuthOpen}) => {
                 {cart.length > 0 && <span>{cart.length}</span>}
             </div>
             {!currentUser?(<Icon  id="user-o" color="#0c0c0cff" onClick={() => {setIsAuthOpen(true)}}/>)
-            :(<div className="user-icon">{currentUser.name.slice(0,1)}</div>)}
+            :(<div className="user-icon" onClick = {() => {navigate(`/user-cabinet/${currentUser.id}`)}}>{currentUser.name.slice(0,1)}</div>)}
              {currentUser && 
              <div>
                 {currentUser.role === 'admin' && <Link to="/admin-panel"><Icon id="lock" color="#0c0c0cff"  size="25"/></Link>}

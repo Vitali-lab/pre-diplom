@@ -1,6 +1,7 @@
 const initialAppState = {
   cart: [],
   order: [],
+  userOrders: [],
 };
 
 export const appReduser = (state = initialAppState, action) => {
@@ -14,6 +15,9 @@ export const appReduser = (state = initialAppState, action) => {
         cart: state.cart.filter((item) => item.id !== action.payload),
       };
     }
+    case "CLEAR_CART": {
+      return { ...state, cart: [] };
+    }
     case "UPDATE_CART_ITEM_COUNT": {
       return {
         ...state,
@@ -26,6 +30,9 @@ export const appReduser = (state = initialAppState, action) => {
     }
     case "CREATE_ORDER": {
       return { ...state, order: action.payload };
+    }
+    case "SET_USER_ORDERS": {
+      return { ...state, userOrders: action.payload };
     }
 
     default:

@@ -10,7 +10,7 @@
       "description": "Короткая куртка с капюшоном в цвете camel",
       "price": 1000,
       "sizes": {
-        "S": 10,
+        "S": "9",
         "M": 8,
         "L": 6,
         "XL": 4
@@ -35,7 +35,7 @@
       "description": "Белая хлопковая футболка унисекс",
       "price": 50,
       "sizes": {
-        "S": 10,
+        "S": "9",
         "M": 8,
         "L": 6,
         "XL": 4
@@ -234,6 +234,69 @@
       "rating": 0,
       "likes": 0,
       "season_id": ""
+    },
+    {
+      "id": "ac82",
+      "category_id": "0",
+      "images": [
+        "https://imageproxy.fh.by/wJn-pxLuEwXoiw77Nkg7yaN5NHhMVE6RRGeV584tzpc/w:428/h:642/rt:fill/q:95/czM6Ly9maC1wcm9kdWN0aW9uLXJmMy8xMzE2NDc1LzEzNzA1NmNjLTU3NDAtMTFmMC04YmFhLWU3MThhZjhmMGViZA.webp",
+        "https://basket-16.wbbasket.ru/vol2614/part261430/261430387/images/big/1.webp",
+        "https://mstefa.com/wp-content/uploads/2023/09/IMG_8029-scaled.jpg"
+      ],
+      "name": "Свитер прекрасный",
+      "description": "очень крутой свитер ",
+      "price": "50",
+      "sizes": {
+        "XS": "2",
+        "S": "2",
+        "M": "2",
+        "L": "2",
+        "XL": "5"
+      },
+      "rating": 0,
+      "likes": 0,
+      "season_id": "1"
+    },
+    {
+      "id": "0a96",
+      "category_id": "1",
+      "images": [
+        "https://i.pinimg.com/564x/22/7d/ec/227dec12b1ba2f5943afa99325b59f45.jpg"
+      ],
+      "name": "Штани",
+      "description": "Штани ",
+      "price": "40",
+      "sizes": {
+        "XS": "2",
+        "S": "2",
+        "M": "2",
+        "L": "2",
+        "XL": "2"
+      },
+      "rating": 0,
+      "likes": 0,
+      "season_id": "1"
+    },
+    {
+      "id": "b9a9",
+      "category_id": "1",
+      "images": [
+        "https://s.0312.ua/section/promonewsintext/upload/images/promo/intext/000/053/906/2518500732w640h6402518500732_6144400f6ea52.jpg",
+        "https://s.0312.ua/section/promonewsintext/upload/images/promo/intext/000/053/906/2518500732w640h6402518500732_6144400f6ea52.jpg"
+      ],
+      "name": "Жынсы",
+      "description": "вау",
+      "price": "50",
+      "sizes": {
+        "XS": "1",
+        "S": "1",
+        "M": "1",
+        "L": "1",
+        "XL": "1"
+      },
+      "rating": 0,
+      "likes": 0,
+      "season_id": "2"
     }
   ],
   "cart": [],
@@ -284,7 +347,7 @@
     }
   ],
   "seasons": [
-    {
+     {
       "id": "0",
       "name": "Зима"
     },
@@ -300,8 +363,196 @@
       "id": "3",
       "name": "Осень"
     }
+    
   ],
-  "orders": [],
+  "orders": [
+    {
+      "id": "eed4",
+      "orderNum": 1761115892408,
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "id": "5-L",
+          "name": "Джинсы синие",
+          "size": "L",
+          "price": 120,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "560a",
+      "orderNum": 1761118488482,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "4-S",
+          "name": "Футболка базовая",
+          "size": "S",
+          "price": 50,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "6676",
+      "orderNum": 1761118592250,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "7-XL",
+          "name": "Платье вечернее",
+          "size": "XL",
+          "price": 300,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "3d82",
+      "orderNum": 1761131898155,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "ac82-L",
+          "name": "Свитер прекрасный",
+          "size": "L",
+          "price": "50",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "c243",
+      "orderNum": 1761132550273,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "ac82-L",
+          "name": "Свитер прекрасный",
+          "size": "L",
+          "price": "50",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "a16f",
+      "orderNum": 1761133064386,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "Доставка по минску",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "4-M",
+          "name": "Футболка базовая",
+          "size": "M",
+          "price": 50,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "a37b",
+      "orderNum": 1761134287225,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "ac82-XS",
+          "name": "Свитер прекрасный",
+          "size": "XS",
+          "price": "50",
+          "count": 1
+        },
+        {
+          "id": "10-L",
+          "name": "Сумка кожаная",
+          "size": "L",
+          "price": 600,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "6fc1",
+      "orderNum": 1761136780747,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "ac82-XS",
+          "name": "Свитер прекрасный",
+          "size": "XS",
+          "price": "50",
+          "count": "5"
+        }
+      ]
+    },
+    {
+      "id": "268f",
+      "orderNum": 1761137520166,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "ac82-XS",
+          "name": "Свитер прекрасный",
+          "size": "XS",
+          "price": "50",
+          "count": 3
+        }
+      ]
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -310,7 +561,57 @@
       "password": "123456",
       "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
       "role": "admin",
-      "likes": []
+      "likes": [
+        {
+          "id": "4",
+          "category_id": "0",
+          "images": [
+            "https://a.lmcdn.ru/img600x866/M/P/MP002XW0SY6Q_27638218_1_v2_2x.jpg"
+          ],
+          "name": "Футболка базовая",
+          "description": "Белая хлопковая футболка унисекс",
+          "price": 50,
+          "sizes": {
+            "S": 10,
+            "M": 8,
+            "L": 6,
+            "XL": 4
+          },
+          "rating": 4,
+          "likes": 0,
+          "reviews": [],
+          "tags": [
+            "футболка",
+            "базовая",
+            "хлопок"
+          ],
+          "season_id": "1"
+        },
+        {
+          "id": "11",
+          "category_id": "6",
+          "images": [
+            "https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?auto=format&fit=crop&w=800&q=80"
+          ],
+          "name": "Спортивный костюм",
+          "description": "Комплект из худи и брюк для тренировок",
+          "price": 220,
+          "sizes": {
+            "S": 10,
+            "M": 8,
+            "L": 6,
+            "XL": 4
+          },
+          "rating": 4.5,
+          "likes": 0,
+          "tags": [
+            "спорт",
+            "костюм",
+            "тренировки"
+          ],
+          "season_id": "1"
+        }
+      ]
     },
     {
       "id": "2",
@@ -357,55 +658,6 @@
       "password": "123123",
       "likes": [
         {
-          "id": "4",
-          "category_id": "0",
-          "images": [
-            "https://a.lmcdn.ru/img600x866/M/P/MP002XW0SY6Q_27638218_1_v2_2x.jpg"
-          ],
-          "name": "Футболка базовая",
-          "description": "Белая хлопковая футболка унисекс",
-          "price": 50,
-          "sizes": {
-            "S": 10,
-            "M": 8,
-            "L": 6,
-            "XL": 4
-          },
-          "rating": 4,
-          "likes": 0,
-          "reviews": [],
-          "tags": [
-            "футболка",
-            "базовая",
-            "хлопок"
-          ],
-          "season_id": "1"
-        },
-        {
-          "id": "7",
-          "category_id": "3",
-          "images": [
-            "https://a.lmcdn.ru/img600x866/R/T/RTLACP722201_19823952_1_v1_2x.jpg"
-          ],
-          "name": "Платье вечернее",
-          "description": "Элегантное чёрное платье до колена",
-          "price": 300,
-          "sizes": {
-            "S": 10,
-            "M": 8,
-            "L": 6,
-            "XL": 4
-          },
-          "rating": 4.8,
-          "likes": 0,
-          "tags": [
-            "платье",
-            "вечернее",
-            "классика"
-          ],
-          "season_id": "1"
-        },
-        {
           "id": "1",
           "category_id": "2",
           "images": [
@@ -429,9 +681,33 @@
             "camel"
           ],
           "season_id": "1"
+        },
+        {
+          "id": "10",
+          "category_id": "7",
+          "images": [
+            "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80"
+          ],
+          "name": "Сумка кожаная",
+          "description": "Классическая сумка из натуральной кожи",
+          "price": 600,
+          "sizes": {
+            "S": 10,
+            "M": 8,
+            "L": 6,
+            "XL": 4
+          },
+          "rating": 4.9,
+          "likes": 0,
+          "tags": [
+            "сумка",
+            "кожа",
+            "аксессуары"
+          ],
+          "season_id": "2"
         }
       ],
-      "isAdmin": true
+      "role": "admin"
     },
     {
       "id": "2a32",
@@ -439,6 +715,16 @@
       "userSurname": "Klimko",
       "userPatronymic": "Сергеевич",
       "email": "31341124@mail.ru",
+      "password": "123123",
+      "likes": [],
+      "isAdmin": false
+    },
+    {
+      "id": "c47d",
+      "name": "Жанна",
+      "userSurname": "Абв",
+      "userPatronymic": "Аркадьевна",
+      "email": "123123@mail.ru",
       "password": "123123",
       "likes": [],
       "isAdmin": false

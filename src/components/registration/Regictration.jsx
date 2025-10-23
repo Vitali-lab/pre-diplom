@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { Button } from "../button/Button";
 import {  useState } from "react";
 import { postUser } from "../../bff/api/post-user";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../bff/api/get-user";
 import styled from "styled-components";
 
 
@@ -59,6 +61,7 @@ const RegistrationContainer = ({className ,setIsRegistrationOpen}) => {
         }
     }
 
+    const dispatch = useDispatch();
 
      const { 
             register, 
@@ -85,10 +88,12 @@ const RegistrationContainer = ({className ,setIsRegistrationOpen}) => {
     const onSubmit = async({name,surname,patronymic,email,password,passcheck}) => {
          try {
           const regOk = await postUser( name,surname,patronymic,email,password,passcheck )
+          console.log(regOk);
           
           if(regOk){
           setIsRegistrationOpen(false);
           setError('');
+          dispatch(getUser( email, password ))
           } 
         } catch (err) {
           setError(err.message || 'Ошибка авторизации');
@@ -137,9 +142,9 @@ const RegistrationContainer = ({className ,setIsRegistrationOpen}) => {
                 type={'password'}
                 fontSize={'17px'}
                 {...register("passcheck",{
-                    onChange: () => setError(null)               })}/>
+                    onChange: () => setError(null)})}/>
                </div>
-                <Button width = "200px">Зарегистрироваться</Button>
+                <Button type="submit" width = "200px">Зарегистрироваться</Button>
             </form>
             
         </div>

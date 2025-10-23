@@ -19,6 +19,7 @@ import { Registration } from "./components/registration/Regictration";
 import { ToastContainer } from "react-toastify";
 import { Favorites } from "./pages/favorites/Favorites";
 import { Order } from "./pages/order/Order";
+import { UserCabinet } from "./pages/user-cabinet/UserCabinet";
 
 const pageVariants = {
   initial: (direction) => ({
@@ -51,11 +52,8 @@ const AppContainer = ({ className }) => {
 
 const dispatch = useDispatch();
  useEffect(()=>{
-    getProducts()
-    .then((data)=>{
-      dispatch(setProducts(data))
-    }  
-  )},[ dispatch])
+    getProducts()(dispatch)
+  },[ dispatch])
 
     useEffect(()=>{
      dispatch(getCategories());
@@ -181,6 +179,20 @@ const dispatch = useDispatch();
                   transition={pageTransition}
                 >
                   <Favorites/>
+                </motion.div>
+              }
+            />
+            <Route
+              path="/user-cabinet/:id"
+              element={
+                <motion.div
+                  variants={pageVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={pageTransition}
+                >
+                  <UserCabinet/>
                 </motion.div>
               }
             />

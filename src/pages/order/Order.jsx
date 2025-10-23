@@ -1,9 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import {  useState } from "react";
 import { Button , Input } from "../../components";
 import { postN8n } from "../../bff/api/post-n8n";
+import { useNavigate } from "react-router-dom";
+import { ModalWindow } from "../../components/modal-window/ModalWindow";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../actions/clear-cart";
+import { postOrders } from "../../bff/api/post-orders";
+import { updateProductSize } from "../../bff/api/patch-product-sizes";
 import styled from "styled-components";
+
 
 const OrderContainer = ({className}) => {
 
@@ -15,13 +22,20 @@ const OrderContainer = ({className}) => {
     const [surname , setSurname] = useState(order.user.userSurname);
     const [deliveryMethod , setDeliveryMethod] = useState('');
     const [deliveryAddress , setDeliveryAddress] = useState('');
+    const [showModal , setShowModal] = useState(false); 
+    const [error , setError] = useState('');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     console.log(order);
+    
+    
     
     const onSubmit = () => {
 
         const complitedOrder = 
         {orderNum: order.orderNum,
+         userId: order.user.id,   
          email,
          name, 
          patronymic, 
@@ -31,11 +45,26 @@ const OrderContainer = ({className}) => {
          products: order.products
         }
 
-        postN8n(complitedOrder);
+        postN8n(complitedOrder).then(() => {
+            setShowModal(true)
+            setError('')
+            updateProductSize(order.products)
+            postOrders(complitedOrder)
+            setTimeout(() => {
+            navigate('/') 
+            dispatch(clearCart())  
+            },5000)
+        }).catch((err) => {
+            setShowModal(true)
+            setError(err.message)
+        })
     }
 
     return (
         <div className={className}>
+            {showModal && <ModalWindow text={error} onClose={() => {setShowModal(false)}}>
+                {error? <p>{error}</p> : <p>Заказ успешно отправлен</p>}
+                </ModalWindow>}
         <div className="complite-order">
            <h2> Заказ номер {orderId}</h2>
            <div>
