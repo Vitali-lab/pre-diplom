@@ -1,51 +1,30 @@
-import { useState } from "react";
-import Slider from "react-slick";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "styled-components";
+import { ProductsSlider } from "../slider/Slider";
+
 
 const RecentlyViewedContainer = ({className}) => {
 
     let views = [];
+    
 
     if(sessionStorage.getItem('products')){
         views = JSON.parse(sessionStorage.getItem('products'));
     }
      
-    const settings = {
-  dots: false,            // ❌ убираем точки снизу
-  arrows: false,          // ❌ убираем стрелки
-  infinite: true,         // ✅ бесконечная прокрутка
-  autoplay: true,         // ✅ запускается сам
-  autoplaySpeed: 0,       // ⏱️ интервал между прокрутками (0 = непрерывно)
-  speed: 18000,            // 🐢 медленная прокрутка
-  cssEase: "linear",      // ⚙️ равномерная скорость
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  pauseOnHover: true,    // ❌ не останавливается при наведении
-  responsive: [
-    { breakpoint: 1024, settings: { slidesToShow: 3 } },
-    { breakpoint: 768, settings: { slidesToShow: 2 } },
-    { breakpoint: 480, settings: { slidesToShow: 1 } },
-  ],
-};
+   
+  console.log(views,'views');
   
    
 
     return (
         <div className={className}>
             <h1>Недавно просмотренные</h1>
-            <div className="products">
-             {views.length === 0 ? <p>Вы ничего не просматривали</p> 
-             :(<Slider {...settings}>
-                 {views.map((item) => {
-                return(
-                <div key={item.id} className="slide">
-                <img src={item.images[0]} alt={item.name} />
-                <p>{item.name}</p>
-                </div>)
-                })}
-             </Slider>) }
+            <div className={views.length > 5 ? "products-slide" : "products"}>
+             {views.length === 0 && <div className="nothing">Вы ничего не просматривали</div>}
+               <ProductsSlider key = {views.id} products={views} />
             </div>
         </div>
     )
@@ -54,17 +33,67 @@ const RecentlyViewedContainer = ({className}) => {
 export const RecentlyViewed = styled(RecentlyViewedContainer)`
 display: flex;
 flex-direction: column;
-justify-content: start;
+justify-content: center;
 align-items: center;
-width: 1600px;
-background-color: #ffffffff;
-margin: 50px 0 0 0;
-border-top: 1px solid #ccccccff;
-border-bottom: 1px solid #ccccccff;
+width: 100%;
 
+
+
+
+padding: 0 20px;
+background-color: #ffffffff;
+margin: 50px 0 50px 0;
+
+& h1 {
+  text-align: center;
+  font-size: 40px;
+} 
+
+& .nothing{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+font-weight: 600;
+margin-top: 50px;
+width: 100%;
+}
+
+& .slick-prev{
+  left: -60px;
+  }
+
+& .slick-next{
+  right: -60px;
+}
+
+& .slick-prev:before, .slick-next:before{
+  color: #000000ff;
+  font-size: 40px;
+  padding:  0 0px;
+}
+  & .slick-slide {
+  display: flex !important;
+  justify-content: center;
+  margin: 0 0px ;
+}
+  
+
+& .products-slide{
+width: 100%;
+margin: 20px 0 0 0;
+
+}
 
 & .products{
-max-width: 1655px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 20px;
+
 margin: 20px 0 0 0;
 
 }
@@ -74,12 +103,13 @@ margin: 20px 0 0 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
   text-align: center;
+  cursor: pointer;
+  z-index: 10;
 }
 & .slide img {
-  width: 300px;
-  height: auto;
+  width: 100%;
+  height: 480px;
   object-fit: cover;
   border-radius: 8px;
 }

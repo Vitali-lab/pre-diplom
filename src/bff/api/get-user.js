@@ -6,7 +6,7 @@ export const getUser = (email, password) => async (dispatch) => {
     const users = await response.json();
 
     const currentUser = users.find(
-      (user) => user.email === email && user.password === password
+      (user) => user.email === email && user.password === password,
     );
     if (currentUser) {
       dispatch(setUser(currentUser));

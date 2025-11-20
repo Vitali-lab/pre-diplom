@@ -1,13 +1,14 @@
 import { toast } from "react-toastify";
 
-export const notifyError = (text) =>
+export const notifyError = (text,onClick) =>
   toast.error(`${text}`, {
-    position: "top-right",
-    autoClose: 5000,
-    hideProgressBar: false,
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: true,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
+    style: { marginTop: "10px",backgroundColor: "#ffffff90", backdropFilter: "blur(10px)", borderRadius: "15px", boxShadow: "0px 5px 10px 2px rgba(34, 60, 80, 0.2)",width: "400px" },
     progress: undefined,
-    theme: "dark",
+    onClick: () => onClick(),
   });

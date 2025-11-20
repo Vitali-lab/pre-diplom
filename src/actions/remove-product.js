@@ -1,5 +1,5 @@
 import { ACTION_TYPE } from "./type";
-export const removeProduct = (product) => ({
+export const removeProduct = (productId) => ({
   type: ACTION_TYPE.REMOVE_PRODUCT,
-  payload: product,
+  payload: productId,
 });

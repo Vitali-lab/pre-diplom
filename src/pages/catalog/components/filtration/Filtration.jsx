@@ -1,197 +1,254 @@
-import {  useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { Icon } from "../../../../components/icon/Icon";
-import { Button } from "../../../../components/button/Button";
-import styled ,{keyframes} from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import { useLocation } from "react-router-dom";
 import { Input } from "../../../../components";
+import { setFilters } from "../../../../actions/set-filters";
+import { categorySelector, seasonSelector } from "../../../../selectors";
 
-const openAnimation = keyframes`
-from{
-    
-    transform: translateY(-30px);
-}
-to{
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
     opacity: 1;
-    transform: translateY(0px);
-}
-`
+    transform: translateY(0);
+  }
+`;
 
+const defaultFiltersState = {
+  seasons: [],
+  categories: [],
+  minPrice: "",
+  maxPrice: "",
+};
 
-const FiltrationContainer = ({className ,setProducts}) => {
+const FiltrationContainer = ({
+  className,
+  filters = defaultFiltersState,
+  productsFiltered = [],
+}) => {
+  const allCategories = useSelector(categorySelector);
+  const allSeasons = useSelector(seasonSelector);
+  const location = useLocation();
+  const dispatch = useDispatch();
 
-
-   const allProducts = useSelector(state => state.products.products);
-   const [seasons, setSeasons] = useState([]);
-   const [categories, setCategories] = useState([]);
-   const [prices, setPrices] = useState([]);
-   const [minPriceInput, setMinPriceInput] = useState('');
-   const [maxPriceInput, setMaxPriceInput] = useState('');
-    const allCategories = useSelector(state => state.products.categories);
-    const allSeasons = useSelector(state => state.products.seasons);
-   
-   
-
-
-   
-  
-   
-   
-
-    const onCheck = ( {target} ) => {
-        if(target.checked){
-          setSeasons(prev => ([...prev, target.name]))
-        } else if(!target.checked){
-         setSeasons(prev => prev.filter(season => season !== target.name))
-        
-        }
-         
-}
-  const onCheckCategory = ( {target} ) => {
-    if(target.checked){
-      setCategories(prev => ([...prev, target.name]))
-    } else if(!target.checked){
-     setCategories(prev => prev.filter(category => category !== target.name))
-     
+  // начальная установка фильтра из query-параметра
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const season = params.get("season");
+    if (season) {
+      const currentSeason = allSeasons.find((s) => s.name === season);
+      if (currentSeason) {
+        dispatch(setFilters({ seasons: [String(currentSeason.id)] }));
+      }
     }
-     
-}
+  }, [location, allSeasons, dispatch]);
 
- const onCheckPrice = ({target}) => {
-    if(target.checked){
-     setPrices(target.checked);
-   const filteredProducts = allProducts.filter((product)=> product.price >= minPriceInput && product.price <= maxPriceInput)
-   setProducts(filteredProducts)
-    } else {
-        setPrices(target.checked);
-        
-    }
-   
-   }
-   
+  const resetFilters = () => {
+    dispatch(setFilters(defaultFiltersState));
+  };
 
+  const filtersActive =
+    filters.seasons.length > 0 ||
+    filters.categories.length > 0 ||
+    !!filters.minPrice ||
+    !!filters.maxPrice;
 
+  return (
+    <aside className={className}>
+      <div className="filter-card">
+        <header className="filter-header">
+          <p className="eyebrow">Фильтр каталога</p>
+          {filtersActive && (
+            <button type="button" onClick={resetFilters}>
+              Сбросить
+            </button>
+          )}
+        </header>
 
+        <p className="filter-counter">
+          Найдено товаров: {productsFiltered.length}
+        </p>
 
+        <section className="filter-section">
+          <h3>Сезон</h3>
+          <div className="filter-options">
+            {allSeasons.map((season) => (
+              <label key={season.id}>
+                <input
+                  type="checkbox"
+                  name={season.id}
+                  checked={filters.seasons?.includes(String(season.id))}
+                  onChange={({ target }) =>
+                    dispatch(
+                      setFilters({
+                        seasons: target.checked
+                          ? [...(filters.seasons || []), String(season.id)]
+                          : (filters.seasons || []).filter(
+                              (s) => s !== String(season.id),
+                            ),
+                      }),
+                    )
+                  }
+                />
+                <span>{season.name}</span>
+              </label>
+            ))}
+          </div>
+        </section>
 
+        <section className="filter-section">
+          <h3>Категории</h3>
+          <div className="filter-options">
+            {allCategories.map((category) => (
+              <label key={category.id}>
+                <input
+                  type="checkbox"
+                  name={category.id}
+                  checked={filters.categories?.includes(String(category.id))}
+                  onChange={({ target }) =>
+                    dispatch(
+                      setFilters({
+                        categories: target.checked
+                          ? [...(filters.categories || []), String(category.id)]
+                          : (filters.categories || []).filter(
+                              (c) => c !== String(category.id),
+                            ),
+                      }),
+                    )
+                  }
+                />
+                <span>{category.name}</span>
+              </label>
+            ))}
+          </div>
+        </section>
 
-useEffect(()=>{
-
- const filtered = allProducts.filter(({season_id:season,category_id:category }) => { 
-   const seasonOk = seasons.length === 0 || seasons.includes(season) 
-   const categoryOk = categories.length === 0 || categories.includes(category)
-   
-   
-   return seasonOk && categoryOk 
-
- })
-
-
- 
- setProducts(filtered)
-
-
-},[seasons,categories,allProducts])
-
-        
-
-    return (
-        <div className={className}>
-            <div className={ 'name-open' } > 
-                <h3>Сезон</h3>
-
-            </div>
-            <div className="seasons" onChange={onCheck}>
-                {allSeasons.map(season => 
-                    (<div className="season" key={season.id}>
-                    <span>{season.name}</span>
-                    <input type="checkbox" name={season.id} />
-                </div>))}
-            </div>
-            <div className={'name-open'} > 
-                <h3>Категории</h3>
-
-            </div>
-            <div className="seasons" onChange={onCheckCategory}>
-                {allCategories.map(category => 
-                    (<div className="season" key={category.id}>
-                    <span>{category.name}</span>
-                    <input type="checkbox" name={category.id} />
-                </div>))}
-                
-            </div>
-            <div className={'name-open'} > 
-                <h3>Цена</h3>
-            </div>
-            <div className="seasons" onChange={onCheckPrice}  >
-            <Input text={"от"} max={'100'} type = "number" width = "80px" onChange={(e) => {setMinPriceInput(e.target.value)}}/>
-            <Input text={"до"} type = "number" width = "80px" onChange={(e) => {setMaxPriceInput(e.target.value)}}/>
-             <input type="checkbox"/>
-             </div>
-            
-        </div>
-    )
-}
-
+        <section className="filter-section">
+          <h3>Цена</h3>
+          <div className="price-inputs">
+            <Input
+              text="От"
+              type="number"
+              width="100%"
+              value={filters.minPrice}
+              onChange={({ target }) =>
+                dispatch(setFilters({ minPrice: target.value }))
+              }
+            />
+            <Input
+              text="До"
+              type="number"
+              width="100%"
+              value={filters.maxPrice}
+              onChange={({ target }) =>
+                dispatch(setFilters({ maxPrice: target.value }))
+              }
+            />
+          </div>
+        </section>
+      </div>
+    </aside>
+  );
+};
 export const Filtration = styled(FiltrationContainer)`
-width: 310px;
-display: flex;
-flex-direction: column;
-justify-content: start;
-align-items: start;
-gap: 20px;
-margin-top: 30px;
+  width: 30%;
 
-& .name-open {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-border-bottom: 1px solid #ccccccff;
-padding: 3px 0;
-cursor: pointer;
-}
-& .name-close {
-cursor: pointer;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-border-bottom: 1px solid #ccccccff;
-padding: 3px 0;
-& i{
-    transform: rotate(180deg);}
-}
+  & .filter-card {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 24px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 20px 35px rgba(15, 23, 42, 0.08);
+    animation: ${fadeIn} 0.4s ease;
+  }
 
- & .seasons {
- display: flex;
- flex-direction: row;
- flex-wrap: wrap;
- justify-content: start;
- align-items: start;
- gap: 15px;
- animation: ${openAnimation} 0.2s linear;
- 
- }
+  & .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
 
- & .season {
- width: 110px;
- display: flex;
- flex-direction: row;
- justify-content: space-between;
- align-items: center;
- border-bottom: 1px solid #ccccccff;
- padding: 5px;
- }
- & .season span{
+    & button {
+      border: none;
+      background: rgba(126, 94, 240, 0.12);
+      color: var(--purple-color);
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 6px 16px;
+      cursor: pointer;
+    }
+  }
+
+  & .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    margin: 0 0 8px;
+    color: rgba(15, 15, 15, 0.5);
+  }
+
+  & .filter-counter {
+    margin: 0;
     font-size: 14px;
-    padding: 5px;
-    
- }
- & .season input{
-    cursor: pointer;
- }
-  
+    color: rgba(15, 15, 15, 0.7);
+  }
 
-`
+  & .filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    & h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+
+  & .filter-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+
+    & label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(15, 15, 15, 0.03);
+      cursor: pointer;
+    }
+  }
+
+  & .price-inputs {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  @media (max-width: 1600px) {
+    width: 20%;
+  }
+
+  @media (max-width: 1280px) {
+    & .filter-card {
+      position: static;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    & .price-inputs {
+      flex-direction: column;
+    }
+  }
+`;

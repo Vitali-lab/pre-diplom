@@ -6,12 +6,18 @@ import {
   usersReduser,
   productReduser,
   productsReduser,
+  orderReduser,
+  seasonReduser,
+  categoryReduser,
 } from "./redusers";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducer = combineReducers({
   app: appReduser,
+  orders: orderReduser,
+  season: seasonReduser,
+  category: categoryReduser,
   user: userReduser,
   users: usersReduser,
   product: productReduser,
@@ -20,5 +26,5 @@ const reducer = combineReducers({
 
 export const store = createStore(
   reducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk)),
 );

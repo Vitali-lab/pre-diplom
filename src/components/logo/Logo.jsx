@@ -1,4 +1,4 @@
-import logo from '../../images/logo.png'
+import logo from '../../images/holly.jpg'
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 
@@ -25,8 +25,8 @@ width: 100px;
 
 & img {
     
-    width: 100px;
-    height: 50px;
+    width: ${({width = '200px'}) => width};
+    height: ${({height = '100px'}) => height};
 }
 & h1 {
     margin: 0px;

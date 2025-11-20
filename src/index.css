@@ -5,7 +5,11 @@
   line-height: 1.5;
   font-weight: 400;
   box-sizing: border-box;
-
+  --purple-color:#7e5ef0ff;
+  --sec-bg-color:rgba(215, 215, 217, 0.293);
+  --grey-color: #a3a3a3ff;
+  --red-color: rgb(197, 33, 33);
+  --box-shadow: 0px 0px 10px 5px rgba(120, 120, 120, 0.24);
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
   background-color: #ffffff;
@@ -21,4 +25,5 @@ body,
   height: 100%;
   margin: 0 auto;
   padding: 0;
+  
 }

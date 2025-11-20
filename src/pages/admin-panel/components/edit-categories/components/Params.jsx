@@ -2,18 +2,20 @@ import { Icon } from "../../../../../components/icon/Icon";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-const ParamsContainer = ({className ,params, deleteFunc}) => {
+
+const ParamsContainer = ({className ,params, deleteFunc , type}) => {
 
     const dispatch = useDispatch();
+    
 
     return (
         <div className={className}>
- {params.map((param) => {
-     return(
+            <h2>{type === "category"? "Категории" : "Сезоны"}</h2>
+        {params.map((param) => {
+         return(
          <div className="category" key={param.id}>
               <p>{param.name}</p>
               <Icon id="trash" onClick={() => dispatch(deleteFunc(param.id))}/>
-              <Icon id = "edit"/>
           </div>
      )
  })}
@@ -23,7 +25,9 @@ const ParamsContainer = ({className ,params, deleteFunc}) => {
 }
 
 export const Params = styled(ParamsContainer)`
-width: 400px;
+        width: 100%;
+        height: auto;
+        min-height: 500px;
         display: flex;
         flex-direction: column;
         justify-content: start;
@@ -32,6 +36,8 @@ width: 400px;
         border: 1px solid #ccccccff;
         border-radius: 10px;
         padding: 20px 10px;
+        & i {
+        cursor: pointer;}
   & .category{
     display: flex;
     flex-direction: row;
@@ -45,5 +51,13 @@ width: 400px;
     & p{
         width: 200px;
     }
-}      
+}   
+& .edit-params-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 0 0;
+}       
 `

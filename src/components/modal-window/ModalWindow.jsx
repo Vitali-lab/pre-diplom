@@ -1,11 +1,12 @@
-
+import { Icon } from "../../components/icon/Icon";
 import styled from "styled-components";
 
-const ModalWindowContainer  = ( {className,children} ) => {
+const ModalWindowContainer  = ( {className,children, setOpenModal} ) => {
 
     return (
         <div className={className}>
             <div className="modal">
+            <Icon id={"times"} onClick={() => setOpenModal(false)}/>
               {children}
             </div>
         </div>
@@ -34,5 +35,12 @@ export const ModalWindow = styled(ModalWindowContainer)`
     justify-content: center;
     align-items: center;
     gap: 20px;
+    }
+    & i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    padding: 5px;
     }
 `

@@ -36,8 +36,8 @@
       "price": 50,
       "sizes": {
         "S": "9",
-        "M": 8,
-        "L": 6,
+        "M": "7",
+        "L": "5",
         "XL": 4
       },
       "rating": 4,
@@ -60,9 +60,9 @@
       "description": "Классические прямые джинсы",
       "price": 120,
       "sizes": {
-        "S": 10,
+        "S": "9",
         "M": 8,
-        "L": 6,
+        "L": "4",
         "XL": 4
       },
       "rating": 4.3,
@@ -134,7 +134,7 @@
       "sizes": {
         "S": 10,
         "M": 8,
-        "L": 6,
+        "L": "5",
         "XL": 4
       },
       "rating": 4.9,
@@ -297,6 +297,27 @@
       "rating": 0,
       "likes": 0,
       "season_id": "2"
+    },
+    {
+      "id": "97fb",
+      "category_id": "2",
+      "images": [
+        "https://a.lmcdn.ru/img600x866/R/T/RTLADW882401_25318001_1_v1_2x.jpg",
+        "https://a.lmcdn.ru/img600x866/R/T/RTLADW882401_25318002_2_v1_2x.jpg"
+      ],
+      "name": "WOOOOOW",
+      "description": "Wowowow",
+      "price": "120",
+      "sizes": {
+        "XS": "2",
+        "S": 0,
+        "M": 0,
+        "L": "2",
+        "XL": "2"
+      },
+      "rating": 0,
+      "likes": 0,
+      "season_id": "3"
     }
   ],
   "cart": [],
@@ -347,7 +368,7 @@
     }
   ],
   "seasons": [
-     {
+    {
       "id": "0",
       "name": "Зима"
     },
@@ -363,7 +384,6 @@
       "id": "3",
       "name": "Осень"
     }
-    
   ],
   "orders": [
     {
@@ -551,6 +571,245 @@
           "count": 3
         }
       ]
+    },
+    {
+      "id": "91c3",
+      "orderNum": 1761294527609,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "5-S",
+          "name": "Джинсы синие",
+          "size": "S",
+          "price": 120,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "2411",
+      "orderNum": 1761313407005,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "Европочта",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "id": "5-L",
+          "name": "Джинсы синие",
+          "size": "L",
+          "price": 120,
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "cccb",
+      "orderNum": 1761330384601,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "Европочта",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "id": "10-L",
+          "name": "Сумка кожаная",
+          "size": "L",
+          "price": 600,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "6810",
+      "orderNum": 1761484301223,
+      "userId": "a5b7",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "Сергеевич",
+      "surname": "Климко",
+      "deliveryMethod": "Европочта",
+      "deliveryAddress": "",
+      "products": [
+        {
+          "id": "4-L",
+          "name": "Футболка базовая",
+          "size": "L",
+          "price": 50,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "4e2f",
+      "orderNum": 1761653688399,
+      "userId": "68ff74129f466e9ac4d3d791",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "cr",
+      "surname": "Климко",
+      "deliveryMethod": "Европочта",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "id": "4-M",
+          "name": "Футболка базовая",
+          "size": "M",
+          "price": 50,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "22d8",
+      "orderNum": 1761739432155,
+      "userId": "6900cd8b28b151a4041054b2",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "123",
+      "surname": "Климко",
+      "deliveryMethod": "Доставка по минску",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "id": "690201017ae5ed6ab00f085c-S",
+          "name": "KURTKA",
+          "size": "S",
+          "price": 200,
+          "count": 1
+        },
+        {
+          "id": "690201017ae5ed6ab00f085c-L",
+          "name": "KURTKA",
+          "size": "L",
+          "price": 200,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "19e2",
+      "orderNum": 1761839414349,
+      "userId": "690319ddf761d227e0c18cfe",
+      "email": "3134114@mail.ru",
+      "name": "Виталий",
+      "patronymic": "crwe",
+      "surname": "Климко",
+      "deliveryMethod": "Доставка по минску",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "id": "6900c01128b151a40410545e-L",
+          "name": "WOOOW",
+          "size": "L",
+          "price": 123,
+          "count": 1
+        },
+        {
+          "id": "6900c01128b151a40410545e-XS",
+          "name": "WOOOW",
+          "size": "XS",
+          "price": 123,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "9899",
+      "userId": "690319ddf761d227e0c18cfe",
+      "email": "3134114@mail.ru",
+      "phone": "29304828",
+      "name": "Виталий",
+      "patronymic": "",
+      "surname": "Климко",
+      "deliveryMethod": "Доставка по минску",
+      "deliveryAddress": "Семеняко д.14, кв.34"
+    },
+    {
+      "id": "9e69",
+      "orderNum": 1761897904624,
+      "userId": "690319ddf761d227e0c18cfe",
+      "email": "3134114@mail.ru",
+      "phone": "29304828",
+      "name": "Виталий",
+      "patronymic": "",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "id": "6900c01128b151a40410545e-XS",
+          "size": "XS",
+          "price": 123,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "be03",
+      "userId": "690319ddf761d227e0c18cfe",
+      "email": "3134114@mail.ru",
+      "phone": "29304828",
+      "name": "Виталий",
+      "patronymic": "",
+      "surname": "Климко",
+      "deliveryMethod": "",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "productId": "6900c01128b151a40410545e",
+          "customId": "6900c01128b151a40410545e-XS",
+          "size": "XS",
+          "count": 2,
+          "_id": "69045ad868fc2046ddbfffc4"
+        }
+      ]
+    },
+    {
+      "id": "0df9",
+      "orderNum": 1761898890370,
+      "userId": "690319ddf761d227e0c18cfe",
+      "email": "3134114@mail.ru",
+      "phone": "29304828",
+      "name": "Виталий",
+      "patronymic": "123123",
+      "surname": "Климко",
+      "deliveryMethod": "Европочта",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": [
+        {
+          "productId": "6900c01128b151a40410545e",
+          "customId": "6900c01128b151a40410545e-XS",
+          "size": "XS",
+          "count": 2,
+          "_id": "6904716cb9019b55ed10ab33"
+        }
+      ]
+    },
+    {
+      "id": "6914",
+      "orderNum": 1761899054498,
+      "userId": "690319ddf761d227e0c18cfe",
+      "email": "3134114@mail.ru",
+      "phone": "29304828",
+      "name": "Виталий",
+      "patronymic": "123",
+      "surname": "Климко",
+      "deliveryMethod": "Доставка по минску",
+      "deliveryAddress": "Семеняко д.14, кв.34",
+      "products": []
     }
   ],
   "users": [

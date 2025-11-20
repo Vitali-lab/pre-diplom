@@ -15,15 +15,19 @@ const ModalContainer = ({className, children , setOpenModal , productId}) => {
     }
        const dispatch = useDispatch();
 
+       console.log(productId);
+       
+       const productDelete = () => {
+        dispatch(deleteProduct(productId))
+        setOpenModal(false)
+       }
+
     return (
         <div className={className} onClick={closeModal}>
         <div className="container">
             <Icon id={"times"} onClick={() => setOpenModal(false)}/>
             <h3>{children}</h3>
-            <Button onClick={()=> {
-                dispatch(deleteProduct(productId)); 
-                setOpenModal(false)
-                }}>Да</Button>
+            <Button onClick={productDelete}>Да</Button>
             <Button  onClick={() => setOpenModal(false)} >Нет</Button>
         </div>
         </div>

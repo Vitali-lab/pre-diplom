@@ -5,7 +5,7 @@ const initialAppState = {
 
 export const userReduser = (state = initialAppState, action) => {
   switch (action.type) {
-    case "SET_USER": {
+    case ACTION_TYPE.SET_USER: {
       return { ...state, currentUser: action.payload };
     }
     case "LOGOUT": {
@@ -16,7 +16,7 @@ export const userReduser = (state = initialAppState, action) => {
         ...state,
         currentUser: {
           ...state.currentUser,
-          likes: [...state.currentUser.likes, action.payload],
+          favorites: [...state.currentUser.favorites, action.payload],
         },
       };
     }
@@ -25,12 +25,49 @@ export const userReduser = (state = initialAppState, action) => {
         ...state,
         currentUser: {
           ...state.currentUser,
-          likes: state.currentUser.likes.filter(
-            (like) => like.id !== action.payload.id
+          favorites: state.currentUser.favorites.filter(
+            (fav) => fav.id !== action.payload,
           ),
         },
       };
     }
+    case ACTION_TYPE.ADD_CARD: {
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          cart: [...state.currentUser.cart, action.payload],
+        },
+      };
+    }
+    case ACTION_TYPE.REMOVE_CARD: {
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          cart: state.currentUser.cart.filter(
+            (item) => item.customId !== action.payload,
+          ),
+        },
+      };
+    }
+    case ACTION_TYPE.UPDATE_CART_ITEM_COUNT: {
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          cart: state.currentUser.cart.map((item) =>
+            item.customId === action.payload.id
+              ? { ...item, count: action.payload.count }
+              : item,
+          ),
+        },
+      };
+    }
+    case ACTION_TYPE.CLEAR_CART: {
+      return { ...state, currentUser: { ...state.currentUser, cart: [] } };
+    }
+
     default:
       return state;
   }

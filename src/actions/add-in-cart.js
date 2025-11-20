@@ -1,5 +1,5 @@
 import { ACTION_TYPE } from "./type";
-export const addInCart = (product, id, size, count) => ({
+export const addInCart = (cartItem) => ({
   type: ACTION_TYPE.ADD_CARD,
-  payload: { ...product, id, size, count },
+  payload: cartItem ,
 });
